@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class='container container-fluid'>
+		<div class='row'>
+			<div class='col'>
+				<h1>My Food Tracker - {{title}}</h1>
+				<form role='form' action='' method='POST'>
+					{% csrf_token %}
+					<table class='table table-bordered table-striped'>
+						<tbody>
+							<tr>
+								<th>Food</th>
+								<th>{{ meal.food.name }}</th>
+							</tr>
+							<tr>
+								<th>Serving Size</th>
+								<th>{{ meal.serving_size }}</th>
+							</tr>
+							<tr>
+								<th>Total Fat</th>
+								<th>{{ meal.food.total_fat }}</th>
+							</tr>
+							<tr>
+								<th>Saturated Fat</th>
+								<th>{{ meal.food.saturated_fat }}</th>
+							</tr>
+							<tr>
+								<th>Cholesterol</th>
+								<th>{{ meal.food.cholesterol }}</th>
+							</tr>
+							<tr>
+								<th>Sodium</th>
+								<th>{{ meal.food.sodium }}</th>
+							</tr>
+							<tr>
+								<th>Total Carbohydrates</th>
+								<th>{{ meal.food.total_carbohydrate }}</th>
+							</tr>
+							<tr>
+								<th>Dietary Fibre</th>
+								<th>{{ meal.food.dietary_fibre }}</th>
+							</tr>
+							<tr>
+								<th>Sugar</th>
+								<th>{{ meal.food.sugar }}</th>
+							</tr>
+							<tr>
+								<th>Protein</th>
+								<th>{{ meal.food.protein }}</th>
+							</tr>
+						</tbody>
+					</table>
+					<a href='{% url 'food:food-index' %}' class='btn btn-success'><i class="fas fa-ban"></i> Return</a>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+	
+
+{% endblock content%}

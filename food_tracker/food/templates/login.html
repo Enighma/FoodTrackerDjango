@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<div class='container container-fluid'>
+		<div class='row'>
+			<div class='col'>
+				<h1><img src='{% static 'images/logo.png' %}' id='logo'/>  My Food Tracker - Login</h1>
+
+				<form class="form-signin" method="POST" action="{% url 'auth_login' %}" role="form">
+					<div class="form-group">
+					{% csrf_token %}
+					
+					<label for="id_username">User Name</label>
+					<input type="text" class="form-control" name="username" id="id_username"  required autofocus/><br />
+					
+					<label for="id_password">Password</label>
+					<input type="password" class="form-control" name="password" id="id_password"  required autofocus/><br />
+					
+					<button class="btn btn-lg btn-success" type="submit">Sign in</button>
+					<input type="hidden" name="next" value="{% url 'food:food-index' %}" />
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+{% endblock content%}

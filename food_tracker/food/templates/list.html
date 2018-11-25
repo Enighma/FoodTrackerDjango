@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<div class='container container-fluid'>
+		<div class='row'>
+			<div class='col'>
+				<h1><img src='{% static 'images/logo.png' %}' id='logo'/>  My Food Tracker - {{title}}</h1>
+				
+
+				<div >
+					<a href="{% url 'food:food-add-meal' %}" class='btn btn-success'><i class="fas fa-plus"></i> Add meal</a>
+
+					<a style="float:right;margin-left:5px;" href="{% url 'auth_logout' %}" class='btn btn-danger'><i class="fas fa-minus"></i> Logout</a>
+
+
+
+					<a style="float:right;" href="{% url 'auth_password_change' %}" class='btn btn-info'><i class="fas fa-edit"></i> Change Password</a>
+
+				</div>
+				<br />
+				
+				<table class='table table-bordered table-striped'>
+					<thead>
+						<tr>
+							<th>Food</th>
+							<th>Meal</th>
+							<th>Calories</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for meal in meals %}
+						<tr>
+							<td>{{ meal.food.name }}</td>
+							<td>{{ meal.get_meal_time_display }}</td>
+							<td>{{ meal.food.calories }}</td>
+							<td>
+								<a href="{% url 'food:food-view-meal' meal.id %}" class='btn btn-info'><i class="far fa-eye"></i> View</a>
+							</td>
+							<td>
+								<a href="{% url 'food:food-update-meal' meal.id %}" class='btn btn-primary'><i class="fas fa-pen"></i> Update</a>
+							</td>
+							<td>
+								<a href="{% url 'food:food-delete-meal' meal.id %}" class='btn btn-danger'><i class="fas fa-trash-alt"></i> Delete</a>
+							</td>
+						</tr>
+						{% empty %}
+						<tr>
+							<td colspan='6'>No Meals Yet</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+
+{% endblock content%}
